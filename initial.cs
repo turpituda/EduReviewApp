@@ -1,6 +1,6 @@
 namespace MyApp
 {
-    public class WeatherForecast
+    public class initial
     {
         public DateTime Date { get; set; }
 
