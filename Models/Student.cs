@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyApp.Models;
 
@@ -11,6 +12,7 @@ public partial class Student
 
     public string Email { get; set; } = null!;
 
+    [ForeignKey("User")]
     public Guid user_id { get; set; }
 
     public virtual ICollection<Submission> Submissions { get; } = new List<Submission>();
