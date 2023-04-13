@@ -6,7 +6,7 @@ namespace MyApp.Models;
 
 public partial class Submission
 {
-    public int SubmissionId { get; set; }
+    public Guid SubmissionId { get; set; }
 
     public DateTime? SubmissionDate { get; set; }
     [EnumDataType(typeof(StatusValues))]
@@ -14,7 +14,7 @@ public partial class Submission
 
     public string? SubmissionComment { get; set; }
 
-    public int? AssignmentId { get; set; }
+    public Guid? AssignmentId { get; set; }
 
     public Guid? StudentId { get; set; }
 
