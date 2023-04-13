@@ -27,10 +27,10 @@ public partial class EduReviewAppContext : DbContext
 
     public virtual DbSet<Submission> Submissions { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Users> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("ConnString");
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    => optionsBuilder.UseSqlServer("ConnString");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -111,10 +111,10 @@ public partial class EduReviewAppContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("name");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.user_id).HasColumnName("user_id");
 
             entity.HasOne(d => d.User).WithMany(p => p.Professors)
-                .HasForeignKey(d => d.UserId)
+                .HasForeignKey(d => d.user_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Professor__user___3C69FB99");
         });
@@ -136,10 +136,10 @@ public partial class EduReviewAppContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("name");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.user_id).HasColumnName("user_id");
 
             entity.HasOne(d => d.User).WithMany(p => p.Students)
-                .HasForeignKey(d => d.UserId)
+                .HasForeignKey(d => d.user_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Student__user_id__3F466844");
 
@@ -192,24 +192,24 @@ public partial class EduReviewAppContext : DbContext
                 .HasConstraintName("FK__Submissio__stude__4F7CD00D");
         });
 
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<Users>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__B9BE370F8D79C6E3");
+            entity.HasKey(e => e.user_id).HasName("PK__Users__B9BE370F8D79C6E3");
 
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-            entity.Property(e => e.Email)
+            entity.Property(e => e.user_id).HasColumnName("user_id");
+            entity.Property(e => e.email)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("email");
-            entity.Property(e => e.Password)
+            entity.Property(e => e.password)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("password");
-            entity.Property(e => e.UserType)
+            entity.Property(e => e.user_type)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("user_type");
-            entity.Property(e => e.Username)
+            entity.Property(e => e.username)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("username");

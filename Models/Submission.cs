@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyApp.Models;
 
@@ -8,14 +9,14 @@ public partial class Submission
     public int SubmissionId { get; set; }
 
     public DateTime? SubmissionDate { get; set; }
-
+    [EnumDataType(typeof(StatusValues))]
     public string? SubmissionStatus { get; set; }
 
     public string? SubmissionComment { get; set; }
 
     public int? AssignmentId { get; set; }
 
-    public int? StudentId { get; set; }
+    public Guid? StudentId { get; set; }
 
     public virtual Assignment? Assignment { get; set; }
 
@@ -23,3 +24,9 @@ public partial class Submission
 
     public virtual Student? Student { get; set; }
 }
+    public enum StatusValues
+    {
+        returned,
+        rejected,
+        accepted
+    }

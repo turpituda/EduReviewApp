@@ -5,17 +5,17 @@ namespace MyApp.Models;
 
 public partial class Student
 {
-    public int StudentId { get; set; }
+    public Guid StudentId { get; set; }
 
     public string Name { get; set; } = null!;
 
     public string Email { get; set; } = null!;
 
-    public int UserId { get; set; }
+    public Guid user_id { get; set; }
 
     public virtual ICollection<Submission> Submissions { get; } = new List<Submission>();
 
-    public virtual User User { get; set; } = null!;
+    public virtual Users User { get; set; } = null!;
 
     public virtual ICollection<Course> Courses { get; } = new List<Course>();
 }
