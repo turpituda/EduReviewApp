@@ -9,7 +9,7 @@ public partial class Course
 
     public string CourseName { get; set; } = null!;
 
-    public int ProfessorId { get; set; }
+    public Guid ProfessorId { get; set; }
 
     public virtual ICollection<Assignment> Assignments { get; } = new List<Assignment>();
 
