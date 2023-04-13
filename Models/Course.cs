@@ -11,7 +11,6 @@ public partial class Course
 
     public Guid ProfessorId { get; set; }
 
-    public virtual ICollection<Assignment> Assignments { get; } = new List<Assignment>();
 
     public virtual Professor Professor { get; set; } = null!;
 

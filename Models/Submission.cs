@@ -11,16 +11,12 @@ public partial class Submission
     public DateTime? SubmissionDate { get; set; }
     [EnumDataType(typeof(StatusValues))]
     public string? SubmissionStatus { get; set; }
+    public string? FileName { get; set; }
 
     public string? SubmissionComment { get; set; }
-
-    public Guid? AssignmentId { get; set; }
+    public IFormFile files { get; set; }
 
     public Guid? StudentId { get; set; }
-
-    public virtual Assignment? Assignment { get; set; }
-
-    public virtual ICollection<File> Files { get; } = new List<File>();
 
     public virtual Student? Student { get; set; }
 }
@@ -28,5 +24,6 @@ public partial class Submission
     {
         returned,
         rejected,
-        accepted
+        accepted,
+        pending
     }

@@ -15,11 +15,7 @@ public partial class EduReviewAppContext : DbContext
     {
     }
 
-    public virtual DbSet<Assignment> Assignments { get; set; }
-
     public virtual DbSet<Course> Courses { get; set; }
-
-    public virtual DbSet<File> Files { get; set; }
 
     public virtual DbSet<Professor> Professors { get; set; }
 
@@ -34,28 +30,6 @@ public partial class EduReviewAppContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Assignment>(entity =>
-        {
-            entity.HasKey(e => e.AssignmentId).HasName("PK__Assignme__DA891814F07ABDCE");
-
-            entity.ToTable("Assignment");
-
-            entity.Property(e => e.AssignmentId)
-                .ValueGeneratedNever()
-                .HasColumnName("assignment_id");
-            entity.Property(e => e.AssignmentName)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("assignment_name");
-            entity.Property(e => e.CourseId).HasColumnName("course_id");
-            entity.Property(e => e.Description)
-                .IsUnicode(false)
-                .HasColumnName("description");
-
-            entity.HasOne(d => d.Course).WithMany(p => p.Assignments)
-                .HasForeignKey(d => d.CourseId)
-                .HasConstraintName("FK__Assignmen__cours__4AB81AF0");
-        });
 
         modelBuilder.Entity<Course>(entity =>
         {
@@ -76,24 +50,6 @@ public partial class EduReviewAppContext : DbContext
                 .HasForeignKey(d => d.ProfessorId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Course__professo__4222D4EF");
-        });
-
-        modelBuilder.Entity<File>(entity =>
-        {
-            entity.HasKey(e => e.FileId).HasName("PK__Files__07D884C647EF9E2D");
-
-            entity.Property(e => e.FileId)
-                .ValueGeneratedNever()
-                .HasColumnName("file_id");
-            entity.Property(e => e.FileName)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("file_name");
-            entity.Property(e => e.SubmissionId).HasColumnName("submission_id");
-
-            entity.HasOne(d => d.Submission).WithMany(p => p.Files)
-                .HasForeignKey(d => d.SubmissionId)
-                .HasConstraintName("FK__Files__submissio__52593CB8");
         });
 
         modelBuilder.Entity<Professor>(entity =>
@@ -170,7 +126,6 @@ public partial class EduReviewAppContext : DbContext
             entity.Property(e => e.SubmissionId)
                 .ValueGeneratedNever()
                 .HasColumnName("submission_id");
-            entity.Property(e => e.AssignmentId).HasColumnName("assignment_id");
             entity.Property(e => e.StudentId).HasColumnName("student_id");
             entity.Property(e => e.SubmissionComment)
                 .IsUnicode(false)
@@ -183,9 +138,6 @@ public partial class EduReviewAppContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("submission_status");
 
-            entity.HasOne(d => d.Assignment).WithMany(p => p.Submissions)
-                .HasForeignKey(d => d.AssignmentId)
-                .HasConstraintName("FK__Submissio__assig__4E88ABD4");
 
             entity.HasOne(d => d.Student).WithMany(p => p.Submissions)
                 .HasForeignKey(d => d.StudentId)
