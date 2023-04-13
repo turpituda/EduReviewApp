@@ -68,7 +68,7 @@ namespace MyApp.Migrations
                 name: "Course",
                 columns: table => new
                 {
-                    courseid = table.Column<int>(name: "course_id", type: "int", nullable: false),
+                    courseid = table.Column<Guid>(name: "course_id", type: "uniqueidentifier", nullable: false),
                     coursename = table.Column<string>(name: "course_name", type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     professorid = table.Column<Guid>(name: "professor_id", type: "uniqueidentifier", nullable: false)
                 },
@@ -86,9 +86,9 @@ namespace MyApp.Migrations
                 name: "Assignment",
                 columns: table => new
                 {
-                    assignmentid = table.Column<int>(name: "assignment_id", type: "int", nullable: false),
+                    assignmentid = table.Column<Guid>(name: "assignment_id", type: "uniqueidentifier", nullable: false),
                     assignmentname = table.Column<string>(name: "assignment_name", type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
-                    courseid = table.Column<int>(name: "course_id", type: "int", nullable: true),
+                    courseid = table.Column<Guid>(name: "course_id", type: "uniqueidentifier", nullable: true),
                     description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true)
                 },
                 constraints: table =>
@@ -106,7 +106,7 @@ namespace MyApp.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false)
+                    CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,11 +127,11 @@ namespace MyApp.Migrations
                 name: "Submission",
                 columns: table => new
                 {
-                    submissionid = table.Column<int>(name: "submission_id", type: "int", nullable: false),
+                    submissionid = table.Column<Guid>(name: "submission_id", type: "uniqueidentifier", nullable: false),
                     submissiondate = table.Column<DateTime>(name: "submission_date", type: "date", nullable: true),
                     submissionstatus = table.Column<string>(name: "submission_status", type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     submissioncomment = table.Column<string>(name: "submission_comment", type: "varchar(max)", unicode: false, nullable: true),
-                    assignmentid = table.Column<int>(name: "assignment_id", type: "int", nullable: true),
+                    assignmentid = table.Column<Guid>(name: "assignment_id", type: "uniqueidentifier", nullable: true),
                     studentid = table.Column<Guid>(name: "student_id", type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -155,7 +155,7 @@ namespace MyApp.Migrations
                 {
                     fileid = table.Column<int>(name: "file_id", type: "int", nullable: false),
                     filename = table.Column<string>(name: "file_name", type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
-                    submissionid = table.Column<int>(name: "submission_id", type: "int", nullable: true)
+                    submissionid = table.Column<Guid>(name: "submission_id", type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {

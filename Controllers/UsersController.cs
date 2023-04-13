@@ -34,32 +34,6 @@ namespace EduReviewApp.Controllers
             _config = config;
         }
 
-        //[HttpGet("Admins")]
-        //[Authorize(Roles = "a")]
-        //public IActionResult AdminsEndpoint()
-        //{
-        //    var currentUser = GetCurrentUser();
-        //    return Ok($"Hi {currentUser.username}. Role: {currentUser.user_type}");
-        //}
-
-        //private Users GetCurrentUser()
-        //{
-        //    var identity = HttpContext.User.Identity as ClaimsIdentity;
-        //    if (identity != null)
-        //    {
-        //        var userClaims = identity.Claims;
-        //        return new Users
-        //        {
-        //            username = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
-        //            email = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Email)?.Value,
-        //            user_type = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Role)?.Value
-        //        };
-        //    }
-        //    return null;
-        //}
-
-
-
         // GET api/<UsersController>
         [HttpGet]
         [Authorize(Roles = "a")]
@@ -70,7 +44,8 @@ namespace EduReviewApp.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        [Authorize(Roles = "a")]
+        //        [Authorize(Roles = "a")]
+        [AllowAnonymous]
         public async Task<IActionResult> AddUser(Users users)
         {
             var user = new Users()

@@ -9,7 +9,7 @@ public partial class File
 
     public string? FileName { get; set; }
 
-    public int? SubmissionId { get; set; }
+    public Guid? SubmissionId { get; set; }
 
     public virtual Submission? Submission { get; set; }
 }

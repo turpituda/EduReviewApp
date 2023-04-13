@@ -12,7 +12,7 @@ using MyApp.Models;
 namespace MyApp.Migrations
 {
     [DbContext(typeof(EduReviewAppContext))]
-    [Migration("20230412212228_initial migration")]
+    [Migration("20230413145329_initial migration")]
     partial class initialmigration
     {
         /// <inheritdoc />
@@ -27,8 +27,8 @@ namespace MyApp.Migrations
 
             modelBuilder.Entity("MyApp.Models.Assignment", b =>
                 {
-                    b.Property<int>("AssignmentId")
-                        .HasColumnType("int")
+                    b.Property<Guid>("AssignmentId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("assignment_id");
 
                     b.Property<string>("AssignmentName")
@@ -37,8 +37,8 @@ namespace MyApp.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("assignment_name");
 
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int")
+                    b.Property<Guid?>("CourseId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("course_id");
 
                     b.Property<string>("Description")
@@ -56,8 +56,8 @@ namespace MyApp.Migrations
 
             modelBuilder.Entity("MyApp.Models.Course", b =>
                 {
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int")
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("course_id");
 
                     b.Property<string>("CourseName")
@@ -91,8 +91,8 @@ namespace MyApp.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("file_name");
 
-                    b.Property<int?>("SubmissionId")
-                        .HasColumnType("int")
+                    b.Property<Guid?>("SubmissionId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("submission_id");
 
                     b.HasKey("FileId")
@@ -170,12 +170,12 @@ namespace MyApp.Migrations
 
             modelBuilder.Entity("MyApp.Models.Submission", b =>
                 {
-                    b.Property<int>("SubmissionId")
-                        .HasColumnType("int")
+                    b.Property<Guid>("SubmissionId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("submission_id");
 
-                    b.Property<int?>("AssignmentId")
-                        .HasColumnType("int")
+                    b.Property<Guid?>("AssignmentId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("assignment_id");
 
                     b.Property<Guid?>("StudentId")
@@ -253,8 +253,8 @@ namespace MyApp.Migrations
                     b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("StudentId", "CourseId")
                         .HasName("PK__StudentC__D2C2E9E0281312F5");
